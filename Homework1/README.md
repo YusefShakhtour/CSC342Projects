@@ -1,0 +1,2 @@
+- [Dashboard HTML](https://github.ncsu.edu/engr-csc342/csc342-2024Spring-yfshakht/blob/main/Homework1/Part2/dashboard.html).
+- [Landing HTML](https://github.ncsu.edu/engr-csc342/csc342-2024Spring-yfshakht/blob/main/Homework1/Part1/landing.html).
