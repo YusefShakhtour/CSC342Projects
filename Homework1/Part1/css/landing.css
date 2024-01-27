@@ -1,13 +1,3 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    row-gap: 10px;
-    column-gap: 20px; 
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
 .flex-container {
     display: flex;
     justify-content: flex-start;
