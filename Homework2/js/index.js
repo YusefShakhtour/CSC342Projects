@@ -3,6 +3,8 @@ let firstOperation = true;
 let value1 = "0";
 let value2 = "";
 let result = "";
+let error = false;
+let errPoint = 0;
 
 document.addEventListener('DOMContentLoaded', e => {
 let btns = document.querySelectorAll('.btn');
@@ -24,53 +26,79 @@ document.body.onkeyup = function(e) {
 
 function handleText(text) {
     if (isNum(text) || isOperation(text) || text === "Backspace" || text === "Enter") {     
-        if (text !== "Backspace" && text !== "Enter" && !isOperation(text) && firstOperation) {
+        if (text !== "Backspace" && text !== "Enter" && !isOperation(text) && firstOperation && !error) {
             if (value1 == "0") {
                 value1 = text;
             }
             else {
+                if (text === ".") {
+                    errPoint++;
+                }
                 value1 += text;
             }
             document.getElementById("result").innerHTML = value1;
         }
-        else if (isOperation(text) && firstOperation) {
+        else if (isOperation(text) && firstOperation && !error) {
             operation = text;
             document.getElementById("result").innerHTML += operation;
             firstOperation = false;
         }
-        else if (!firstOperation && isOperation(text) && value2 === "") {
+        else if (!firstOperation && isOperation(text) && value2 === "" && !error) {
             operation = text;
         }
 
-        else if (text !== "Enter" && !isOperation(text) && !firstOperation && text !== "Backspace") {
+        else if (text !== "Enter" && !isOperation(text) && !firstOperation && text !== "Backspace" && !error) {
             value2 += text;
             document.getElementById("result").innerHTML = value1 + operation + value2;
 
         }
 
-        else if (text === "Enter" && value1 != "" && value2 != "") {
+        else if (text === "Enter" && value1 != "" && value2 != "" && !error) {
             result = calculate(value1, value2, operation);
-            populate(result);
-            value1 = "0";
-            value2 = "";
-            firstOperation = true;
-            operation = "";
-            document.getElementById("result").innerHTML = result;
+            if (result === NaN || result === Infinity) {
+                error = true;
+                document.getElementById("result").innerHTML = "Error";
+            }
+            if (errPoint >= 2) {
+                error = true;
+                document.getElementById("result").innerHTML = "Error";
+            }
+            else {
+                populate(result);
+                value1 = "0";
+                value2 = "";
+                firstOperation = true;
+                operation = "";
+                document.getElementById("result").innerHTML = result;
+            }
         }
 
-        else if (isOperation(text) && !firstOperation) {
+        else if (isOperation(text) && !firstOperation && !error) {
             result = calculate(value1, value2, operation);
-            populate(result);
-            value1 = result;
-            value2 = ""
-            operation = text;
-            document.getElementById("result").innerHTML = result;
+            if (result === NaN || result === Infinity) {
+                error = true;
+                document.getElementById("result").innerHTML = "Error";
+            }
+            if (errPoint >= 2) {
+                error = true;
+                document.getElementById("result").innerHTML = "Error";
+            }
+            else {
+                populate(result);
+                value1 = result;
+                value2 = ""
+                operation = text;
+                document.getElementById("result").innerHTML = result;
+            }
         }
 
         else if (text === "Backspace") {
             value1 = "0";
             value2 = "";
             result = "";
+            firstOperation = true;
+            error = false;
+            errPoint = 0;
             operation = "";
             document.getElementById("result").innerHTML = value1;
 
@@ -130,46 +158,79 @@ function handleClick() {
     let text = this.textContent;
     this.blur();
 
-    if (text !== "C" && text !== "=" && !isOperation(text) && firstOperation) {
+    if (text !== "C" && text !== "=" && !isOperation(text) && firstOperation && !error) {
         if (value1 == "0") {
             value1 = text;
         }
         else {
+            if (text === ".") {
+                errPoint++;
+            }
             value1 += text;
         }
         document.getElementById("result").innerHTML = value1;
     }
-    else if (isOperation(text) && firstOperation) {
-        operation = text;
-        firstOperation = false;
+    else if (isOperation(text) && firstOperation && !error) {
+        if (errPoint >= 2) {
+            error = true;
+            document.getElementById("result").innerHTML = "Error";
+        }
+        else {
+            errPoint = 0;
+            operation = text;
+            firstOperation = false;
+        }
     }
-    else if (!firstOperation && isOperation(text) && value2 === "") {
+    else if (!firstOperation && isOperation(text) && value2 === "" && !error) {
         operation = text;
     }
 
-    else if (text !== "=" && !isOperation(text) && !firstOperation && text !== "C") {
+    else if (text !== "=" && !isOperation(text) && !firstOperation && text !== "C" && !error) {
+        if (text === ".") {
+            errPoint++;
+        }
         value2 += text;
         document.getElementById("result").innerHTML = value2;
 
     }
 
-    else if (text === "=" && value1 != "" && value2 != "") {
+    else if (text === "=" && value1 != "" && value2 != "" && !error) {
         result = calculate(value1, value2, operation);
-        populate(result);
-        value1 = "0";
-        value2 = "";
-        firstOperation = true;
-        operation = "";
-        document.getElementById("result").innerHTML = result;
+        if (result === NaN || result === Infinity) {
+            error = true;
+            document.getElementById("result").innerHTML = "Error";
+        }
+        if (errPoint >= 2) {
+            error = true;
+            document.getElementById("result").innerHTML = "Error";
+        }
+        else {
+            populate(result);
+            value1 = "0";
+            value2 = "";
+            firstOperation = true;
+            operation = "";
+            document.getElementById("result").innerHTML = result;
+        }
     }
 
-    else if (isOperation(text) && !firstOperation) {
+    else if (isOperation(text) && !firstOperation && !error) {
         result = calculate(value1, value2, operation);
-        populate(result);
-        value1 = result;
-        value2 = ""
-        operation = text;
-        document.getElementById("result").innerHTML = result;
+        if (result === NaN || result === Infinity) {
+            error = true;
+            document.getElementById("result").innerHTML = "Error";
+        }
+        if (errPoint >= 2) {
+            error = true;
+            document.getElementById("result").innerHTML = "Error";
+        }
+        else {
+            populate(result);
+            value1 = result;
+            value2 = ""
+            operation = text;
+            document.getElementById("result").innerHTML = result;
+        }
     }
 
     else if (text === "C") {
@@ -177,6 +238,9 @@ function handleClick() {
         value2 = "";
         result = "";
         operation = "";
+        firstOperation = true;
+        error = false;
+        errPoint = 0;
         document.getElementById("result").innerHTML = value1;
 
     }
