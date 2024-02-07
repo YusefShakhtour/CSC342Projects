@@ -1,0 +1,100 @@
+.outcontainer {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+html, body { 
+    height:100%;
+}
+
+.tableContainer {
+    display:flex;
+    flex-wrap: wrap;
+    width: 400px;
+    height: 450px;
+    /* border: 2px solid black;
+    box-shadow: 5px 5px black;
+    border-radius: 5px; */
+}
+.incontainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 450px;
+    height: 600px;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.incontainer #result {
+    width: 420px;
+    height: 35px;
+    border: 1px solid black;
+    padding-right: 10px;
+    padding-top: 15px;
+    font-size: 140%;
+
+    text-align: right;
+    border: 2px solid black;
+    transition: .2s;
+    border-radius: 5px;
+}
+
+
+
+.incontainer button {
+    width: 100px;
+    height: 100px;
+    box-shadow: 5px 5px black;
+    background-color: white;
+    transition: box-shadow .5s;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: fantasy;
+    font-size: 160%;
+}
+.outcontainer button:focus {
+    box-shadow: none;
+    background-color: rgb(230, 230, 230);
+}
+.incontainer .equal {
+    width: 430px;
+    height: 100px;
+}
+
+.historyContainer #table {
+    width:400px;
+    height: 400px;
+    overflow-y: scroll;
+    border: 2px solid black;
+    padding-top: 10px;
+    scrollbar-color: black;
+}
+
+.history {
+    margin-top: 10px;
+    width: 400px;
+    height: 100px;
+    box-shadow: 5px 5px black;
+    background-color: white;
+    transition: box-shadow .5s;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: fantasy;
+    font-size: 160%;
+}
+
+.hist {
+    font-size: 20px;
+    text-align: center;
+    font-family: fantasy;
+}
+
+.hist:nth-child(even) {
+    background-color: rgb(207, 207, 207);
+    padding: 5px;
+}
