@@ -64,6 +64,9 @@ function handleText(text) {
 
         else if (text !== "Enter" && !isOperation(text) && !firstOperation && text !== "Backspace" && !error) {
             value2 += text;
+            if (text === ".") {
+                errPoint++;
+            }
             document.getElementById("result").innerHTML = value1 + operation + value2;
 
         }
@@ -74,7 +77,7 @@ function handleText(text) {
                 error = true;
                 document.getElementById("result").innerHTML = "Error";
             }
-            if (errPoint >= 2) {
+            else if (errPoint >= 2) {
                 error = true;
                 document.getElementById("result").innerHTML = "Error";
             }
@@ -219,7 +222,7 @@ function handleClick() {
             error = true;
             document.getElementById("result").innerHTML = "Error";
         }
-        if (errPoint >= 2) {
+        else if (errPoint >= 2) {
             error = true;
             document.getElementById("result").innerHTML = "Error";
         }
