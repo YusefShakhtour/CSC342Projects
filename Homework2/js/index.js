@@ -17,12 +17,27 @@ clearHistory.addEventListener('click', clear);
 equal.addEventListener('click', handleClick);
 
 let resText = document.querySelector("result");
-document.body.onkeyup = function(e) {
+document.body.onkeydown = function(e) {
     handleText(e.key);
 }
 
+let historyDiv = document.querySelectorAll('.hist');
+    historyDiv.forEach(function(currentDiv) {
+        currentDiv.addEventListener('click', historyClick);
+    });
 });
 
+
+function historyClick() {
+    if (value1 === "0" && firstOperation && !error) {
+        value1 = this.innerHTML;
+        document.getElementById("result").innerHTML = value1;
+    }
+    else if (value2 === "" && firstOperation === false && !error) {
+        value2 = this.innerHTML;
+        document.getElementById("result").innerHTML = value1 + operation + value2;
+    }
+}
 
 function handleText(text) {
     if (isNum(text) || isOperation(text) || text === "Backspace" || text === "Enter") {     
@@ -53,7 +68,7 @@ function handleText(text) {
 
         }
 
-        else if (text === "Enter" && value1 != "" && value2 != "" && !error) {
+        else if ((text === "Enter") && value1 != "" && value2 != "" && !error) {
             result = calculate(value1, value2, operation);
             if (result === NaN || result === Infinity) {
                 error = true;
@@ -128,6 +143,10 @@ function populate(num) {
     element.classList.add("hist");
     element.appendChild(document.createTextNode(num));
     document.getElementById("table").appendChild(element);
+    historyDiv = document.querySelectorAll('.hist');
+    historyDiv.forEach(function(currentDiv) {
+        currentDiv.addEventListener('click', historyClick);
+    });
 }
  
 function isOperation(variable) {
