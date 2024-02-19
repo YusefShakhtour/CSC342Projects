@@ -1,0 +1,12 @@
+{
+  "name": "csc342-2024spring-yfshakht",
+  "version": "1.0.0",
+  "description": "- [Homework 0](https://github.ncsu.edu/engr-csc342/csc342-2024Spring-yfshakht/blob/main/Homework0/README.md).\r - [Homework 1](https://github.ncsu.edu/engr-csc342/csc342-2024Spring-yfshakht/blob/main/Homework1/README.md).\r - [Homework 2](https://github.ncsu.edu/engr-csc342/csc342-2024Spring-yfshakht/tree/main/Homework2/README.md).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

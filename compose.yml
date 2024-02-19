@@ -18,3 +18,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./Homework2:/usr/local/apache2/htdocs
+
+  hw3:
+    image: httpd:latest
+    restart: unless-stopped
+    volumes:
+      - ./Homework3:/usr/local/apache2/htdocs
