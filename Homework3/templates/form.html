@@ -8,61 +8,63 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
+    <form action="send" method="post">
         <div class="sendContainer">
             <h1>Sender Details</h1>
             <div class="imgContainer">
-                <img>
+                <img id="preview" alt="Preview Image">
                 <div></div>
-                <input type="file">
+                <input type="file" name="file" accept="image/*" id="fileIn" required/>
             </div>
             <div>First Name:</div>
-            <input type="text">
+            <input type="text" name="sendFirst" required/>
             <div>Last Name:</div>
-            <input type="text">
+            <input type="text" id="lastname" name="sendLast" required/>
         </div>
         <div class="recContainer">
             <h1>Recipient Details</h1>
             <div>First Name:</div>
-            <input type="text">
+            <input type="text" name="recFirst" required/>
             <div>Last Name:</div>
-            <input type="text">
+            <input type="text" name="recLast" required/>
             <div>Message</div>
-            <input type="text">
+            <input type="text" name="message" required minlength="10" maxlength="500" id="msg"/>
             <div>Notify Recipient</div>
-            <input type="radio">
-            <label>Email</label>
-            <input type="radio">
-            <label>SMS</label>
-            <input type="radio">
-            <label>Do not Notify</label>
+            <input type="radio" id="email" name="emailRad"/>
+            <label for="email">Email</label>
+            <input type="radio" id="sms" name="smsRad"/>
+            <label for="sms">SMS</label>
+            <input type="radio" id="none" name="none"/>
+            <label for="none">Do not Notify</label>
             <div>Email:</div>
-            <input type="email">
+            <input type="email" name="email" id="textEmail"/>
             <div>Phone Number:</div>
-            <input type="text">
+            <input type="text" id="textPhone" name="phone" pattern="[0-9]{10,10}"/>
         </div>
         <div class="detailContainer">
             <h1>Payment Details</h1>
             <div>Card Type</div>
-            <select>
+            <select required name="cardType">
                 <option>Visa</option>
                 <option>Mastercard</option>
+                <option>Discover</option>
+                <option>American Express</option>
             </select>
             <div>Card Number</div>
-            <input type="text">
+            <input type="text" id="card" name="cardNum" required pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"/>
 
             <div>Expiration</div>
-            <input type="date">
+            <input type="text" id="date" name="expDate" required pattern="^(0[1-9]|1[0-2])\/([0-9]{4})$"/>
 
             <div>CCV</div>
-            <input type="password">
+            <input type="password" name="ccv" minlength="3" maxlength="4" required/>
 
             <div>Amount($):</div>
-            <input type="text">
+            <input type="number" step=".01" name="amount" required/>
 
-            <input type="checkbox">
+            <input type="checkbox" name="terms" id="check" required/>
             <label>I agree to the terms and conditions</label>
-            <input type="submit" Send>
+            <input type="submit" id="submit"/>
         </div>
     </form>
 </body>
