@@ -1,6 +1,7 @@
 const express = require('express'); // Import our Express dependency
 const multer = require('multer');
-const upload = multer({dest: '/static/uploads/'});
+const upload = multer({dest: 'static/uploads/'});
+const fs = require('fs');
 
 const app = express(); // Create a new server instance
 const PORT = 3000; // Port number we want to use of this server
@@ -12,20 +13,23 @@ app.use(express.static('static'));
 app.use(express.urlencoded({extended: true}));
 
 // Routes
-app.get('/', (req, res) => {
-  res.sendFile(html_path + 'form.html');
-});
 
-// app.get('/success', (req, res) => {
-//   res.sendFile(html_path + 'success.html');
-// });
 
-// app.get('/error', (req, res) => {
-//     res.sendFile(html_path + 'error.html');
-//   });
-
-app.post('/send', upload.single('myFile'), (req,res) => {
+app.post('/send', upload.single('file'), (req,res) => {
   try {
+
+    if ((req.body.recFirst.toLowerCase() == "surat") || (req.body.recFirst.toLowerCase() == "stu")) {
+      if (req.body.recLast.toLowerCase() == "dent") {
+        fs.unlink(req.file.path, (err) => {
+          if (err) {
+            console.error('Error deleting file:', err);
+            return res.status(500).send('Error deleting file');
+          }
+        });
+        console.log('File deleted successfully');
+        res.sendFile(html_path + 'error.html');
+      }
+    }
     if (req.body.expDate != "" && req.body.sendFirst != "" && req.body.sendLast != "" && req.body.recFirst != "" && 
         req.body.recLast != "" && req.body.message != "" &&  req.body.cardType != "" && req.body.cardNum != "" && 
         req.body.expDate != "" && req.body.ccv != "" && req.body.amount != "") {
@@ -61,11 +65,16 @@ app.post('/send', upload.single('myFile'), (req,res) => {
     else {
       res.sendFile(html_path + 'error.html');
     }
+
     }
   catch(err) {
     res.sendFile(html_path + 'error.html');
   }
-})
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(html_path + 'form.html');
+});
 
 
 // As our server to listen for incoming connections
