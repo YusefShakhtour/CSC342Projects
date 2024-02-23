@@ -29,13 +29,14 @@ app.post('/send', upload.single('myFile'), (req,res) => {
     if (req.body.expDate != "" && req.body.sendFirst != "" && req.body.sendLast != "" && req.body.recFirst != "" && 
         req.body.recLast != "" && req.body.message != "" &&  req.body.cardType != "" && req.body.cardNum != "" && 
         req.body.expDate != "" && req.body.ccv != "" && req.body.amount != "") {
-          if (req.body.emailRad == "on") {
-            if (req.body.email.checkValidity()) {
+          if (req.body.notify.value == "email") {
+              //Regex from https://emaillistvalidation.com/blog/email-validation-in-javascript-using-regular-expressions-the-ultimate-guide/#:~:text=A%20common%20and%20widely%20accepted,Z%5D%7B2%2C4%7D%24%2F%20.
+            if ("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$".test(req.body.email) == false) {   
               res.sendFile(html_path + 'error.html');
             } 
           }
-          else if (req.body.smsRad == "on") {
-            if (req.body.phone.checkValidity() == false) {
+          else if (req.body.notify.value == "sms") {
+            if ("[0-9]{10,10}".test(req.body.phone) == false) {
               res.sendFile(html_path + 'error.html');
             } 
           }

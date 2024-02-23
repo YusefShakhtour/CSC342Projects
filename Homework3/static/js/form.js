@@ -10,33 +10,11 @@ document.addEventListener('DOMContentLoaded', e => {
     let msg = document.querySelector('#msg');
     let cardNum = document.getElementById('card');
 
-    let form = document.querySelector("form");
+    let form = document.getElementById("form");
 
     let check = document.getElementById('check');
     let file = document.getElementById("fileIn");
     
-
-    radioSMS.addEventListener('click', function(e) {
-        textPhone.required = true;
-        textEmail.required = false;
-        radioEmail.checked = false;
-        radioNeither.checked = false;
-    })
-
-    radioEmail.addEventListener('click', function(e) {
-        textPhone.required = false;
-        textEmail.required = true;
-        radioSMS.checked = false;
-        radioNeither.checked = false;
-
-    })
-
-    radioNeither.addEventListener('click', function(e) {
-        textPhone.required = false;
-        textEmail.required = false;
-        radioSMS.checked = false;
-        radioEmail.checked = false;
-    })
 
     file.addEventListener('change', function(e) {
         let input = e.target;
@@ -50,116 +28,57 @@ document.addEventListener('DOMContentLoaded', e => {
         }
     });
 
-    // cardNum.setCustomValidity("Please enter your card in the following format ####-####-####-####");
-    // check.setCustomValidity("You must agree to our terms and conditions to use this service");
-    // msg.setCustomValidity("Your message should be at least 10 characters, but no more than 500 characters");
-    // let date = expDate.value;
-    // let split = date.split("/");
-    // let exp = new Date(split[1], split[0]);
-    // let today = new Date();
-    // if (!expDate.checkValidity()) {
-    //     expDate.setCustomValidity("Please match the following format: MM/YYYY");
-    // }
-    // else if (exp < today) {
-    //     expDate.setCustomValidity("The card you entered is expired")
-    // }
 
-    // if (!textPhone.checkValidity() && radioSMS.checked) {
-    //     textPhone.setCustomValidity("Please enter the 10 digit phone number you would like to notify ##########");
-    // }
-
-    // if (!textEmail.checkValidity() && radioEmail.checked) {
-    //     textPhone.setCustomValidity("Please enter the email you would like to notify");
-    // }
-
-    // if (!check.checkValidity()) {
-    //     console.log(check.checkValidity());
-    //     check.setCustomValidity("You must agree to our terms and conditions to use this service");
-    // }
-
-
-    msg.setCustomValidity("Your message should be at least 10 characters, but no more than 500 characters");
-
-    submit.addEventListener('click', function(e) {
+    form.addEventListener('submit', function(e) {
         // console.log(cardNum.checkValidity());
         // console.log(msg.checkValidity());
         // console.log(expDate.checkValidity());
         // console.log(check.checkValidity());
         // console.log(file.checkValidity());
+
+        // Issue here is that when I submit, the console.log does not get printed if the form is not in a valid state
+        // So I'm confused as to how any of my messages would get set if the only way they get set is on successful submission
         console.log("Submit attempt");
 
-        if (msg.checkValidity() == false) {
+        // The previous issue when I was using a click event is that if I attempted to submit with an invalid input
+        // that had a custom validity message set, it would show the error, and even if I fixed it, it would still 
+        // say that it was wrong. This only occurred to the elements that I had set a custom validity message for.
+        // Elements that were using the default are working as expected 
+        if (!msg.checkValidity()) {
+            console.log("Invalid");
             msg.setCustomValidity("Your message should be at least 10 characters, but no more than 500 characters");
         }
-        else {
-            msg.setCustomValidity(null);
+        // I attempted to set the validity message to "" and null but neither worked
+        else if (msg.checkValidity()) {
+            console.log("Valid");
+            msg.setCustomValidity("");
         }
 
+        // All of the below code is the same issues that are occuring with setCustomValidity above.
 
-
-        let date = expDate.value;
-        let split = date.split("/");
-        let exp = new Date(split[1], split[0]);
-        let today = new Date();
-        if (!expDate.checkValidity()) {
-            expDate.setCustomValidity("Please match the following format: MM/YYYY");
-        }
-        else if (exp < today) {
-            expDate.setCustomValidity("The card you entered is expired")
-        }
+        // let date = expDate.value;
+        // let split = date.split("/");
+        // let exp = new Date(split[1], split[0]);
+        // let today = new Date();
+        // if (!expDate.checkValidity()) {
+        //     expDate.setCustomValidity("Please match the following format: MM/YYYY");
+        // }
+        // else if (exp < today) {
+        //     expDate.setCustomValidity("The card you entered is expired")
+        // }
         
 
-        if (!textPhone.checkValidity() && radioSMS.checked) {
-            textPhone.setCustomValidity("Please enter the 10 digit phone number you would like to notify ##########");
-        }
+        // if (!textPhone.checkValidity() && radioSMS.checked) {
+        //     textPhone.setCustomValidity("Please enter the 10 digit phone number you would like to notify ##########");
+        // }
 
-        if (!textEmail.checkValidity() && radioEmail.checked) {
-            textPhone.setCustomValidity("Please enter the email you would like to notify");
-        }
+        // if (!textEmail.checkValidity() && radioEmail.checked) {
+        //     textPhone.setCustomValidity("Please enter the email you would like to notify");
+        // }
 
-        if (!check.checkValidity()) {
-            check.setCustomValidity("You must agree to our terms and conditions to use this service");
-        }
+        // if (!check.checkValidity()) {
+        //     check.setCustomValidity("You must agree to our terms and conditions to use this service");
+        // }
 
     });
-
-    // form.addEventListener("submit", function(e) {
-    //     console.log("Submit attempt");
-    //     if (!msg.checkValidity()) {
-    //         msg.setCustomValidity("Your message should be at least 10 characters, but no more than 500 characters");
-    //     }
-    //     else {
-    //         msg.setCustomValidity("");
-    //     }
-
-    //     msg.reportValidity();
-
-    //     let date = expDate.value;
-    //     let split = date.split("/");
-    //     let exp = new Date(split[1], split[0]);
-    //     let today = new Date();
-    //     if (!expDate.checkValidity()) {
-    //         expDate.setCustomValidity("Please match the following format: MM/YYYY");
-    //     }
-    //     else if (exp < today) {
-    //         expDate.setCustomValidity("The card you entered is expired");
-    //     }
-    //     else {
-    //         expDate.setCustomValidity("");
-    //     }
-        
-
-    //     if (!textPhone.checkValidity() && radioSMS.checked) {
-    //         textPhone.setCustomValidity("Please enter the 10 digit phone number you would like to notify ##########");
-    //     }
-
-    //     if (!textEmail.checkValidity() && radioEmail.checked) {
-    //         textPhone.setCustomValidity("Please enter the email you would like to notify");
-    //     }
-
-    //     if (!check.checkValidity()) {
-    //         console.log(check.checkValidity());
-    //         check.setCustomValidity("You must agree to our terms and conditions to use this service");
-    //     }
-    // })
 });

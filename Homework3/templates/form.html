@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="send" method="post">
+    <form action="send" method="post" id="form">
         <div class="sendContainer">
             <h1>Sender Details</h1>
             <div class="imgContainer">
@@ -30,11 +30,11 @@
             <div>Message</div>
             <input type="text" name="message" required minlength="10" maxlength="500" id="msg"/>
             <div>Notify Recipient</div>
-            <input type="radio" id="email" name="emailRad"/>
+            <input type="radio" id="email" name="notify" value="email"/>
             <label for="email">Email</label>
-            <input type="radio" id="sms" name="smsRad"/>
+            <input type="radio" id="sms" name="notify" value="sms"/>
             <label for="sms">SMS</label>
-            <input type="radio" id="none" name="none"/>
+            <input type="radio" id="none" name="notify" value="none"/>
             <label for="none">Do not Notify</label>
             <div>Email:</div>
             <input type="email" name="email" id="textEmail"/>
