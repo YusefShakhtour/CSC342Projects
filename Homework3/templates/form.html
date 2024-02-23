@@ -28,13 +28,13 @@
             <div>Last Name:</div>
             <input type="text" name="recLast" required/>
             <div>Message</div>
-            <input type="text" name="message" required minlength="10" maxlength="500" id="msg"/>
+            <input type="text" name="message" required pattern="^.{10,500}$" id="msg"/>
             <div>Notify Recipient</div>
             <input type="radio" id="email" name="notify" value="email"/>
             <label for="email">Email</label>
             <input type="radio" id="sms" name="notify" value="sms"/>
             <label for="sms">SMS</label>
-            <input type="radio" id="none" name="notify" value="none"/>
+            <input type="radio" id="none" name="notify" value="none" required/>
             <label for="none">Do not Notify</label>
             <div>Email:</div>
             <input type="email" name="email" id="textEmail"/>

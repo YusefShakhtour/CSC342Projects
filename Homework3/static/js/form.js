@@ -28,8 +28,96 @@ document.addEventListener('DOMContentLoaded', e => {
         }
     });
 
+    file.addEventListener('change', function(e) {
+        const input = e.target;
+        if (input.validity.patternMismatch) {
+            input.setCustomValidity("Please choose a file");
+        }
+        else {
+            input.setCustomValidity("");
+        }
+    })
+
+    msg.addEventListener('change', function(e) {
+        const input = e.target;
+        if (input.validity.patternMismatch) {
+            input.setCustomValidity("Your message must be between 10 and 500 characters long");
+        }
+        else {
+            input.setCustomValidity("");
+        }
+    })
+
+    cardNum.addEventListener('change', function(e) {
+        const input = e.target;
+        if (input.validity.patternMismatch) {
+            input.setCustomValidity("Enter your card in the ####-####-####-#### format");
+        }
+        else {
+            input.setCustomValidity("");
+        }
+    })
+
+    expDate.addEventListener('change', function(e) {
+        let date = expDate.value;
+        let split = date.split("/");
+        let exp = new Date(split[1], split[0]);
+        let today = new Date();
+        const input = e.target;
+        if (input.validity.patternMismatch) {
+            input.setCustomValidity("Please ensure your date is in the MM/YYYY format");
+        }
+        else if (exp < today) {
+            input.setCustomValidity("The card you entered is expired");
+        }
+        else {
+            input.setCustomValidity("");
+        }
+    })
+
+    textPhone.addEventListener('change', function(e) {
+        const input = e.target;
+        if (input.validity.patternMismatch) {
+            input.setCustomValidity("Enter the number in the following format ##########");
+        }
+        else {
+            input.setCustomValidity("");
+        }
+    })
+
+    radioEmail.addEventListener('change', function(e) {
+        console.log("text");
+        textEmail.required = true;
+        textPhone.required = false;
+
+    })
+
+    radioSMS.addEventListener('change', function(e) {
+        console.log("text");
+        textPhone.required = true;
+        textEmail.required = false;
+
+    })
+
+    radioNeither.addEventListener('change', function(e) {
+        console.log("text");
+        textPhone.required = false;
+        textEmail.required = false;
+    })
 
     form.addEventListener('submit', function(e) {
+
+        console.log(file.checkValidity());
+        if (!file.checkValidity()) {
+            e.preventDefault();
+            file.setCustomValidity("Gotta fill this broskie");
+            file.reportValidity();  
+        }
+        
+        if (file.checkValidity()) {
+            file.setCustomValidity("");
+            file.reportValidity();
+        }
         // console.log(cardNum.checkValidity());
         // console.log(msg.checkValidity());
         // console.log(expDate.checkValidity());
