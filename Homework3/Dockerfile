@@ -1,4 +1,4 @@
 FROM node:latest
-WORKDIR /usr/local/src/
+WORKDIR /usr/local/app/
 COPY . .
 CMD [ "npm", "start" ]
