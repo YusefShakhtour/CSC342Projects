@@ -18,13 +18,14 @@ app.use(express.urlencoded({extended: true}));
 app.post('/send', upload.single('file'), (req,res) => {
   try {
 
-    if ((req.body.recFirst.toLowerCase() == "surat") || (req.body.recFirst.toLowerCase() == "stu")) {
+    if ((req.body.recFirst.toLowerCase() == "stuart") || (req.body.recFirst.toLowerCase() == "stu")) {
       if (req.body.recLast.toLowerCase() == "dent") {
-        fs.unlink(req.file.path, (err) => {
-          if (err) {
-            console.error('Error deleting file:', err);
-          }
-        });
+        fs.unlink(req.file.path);
+        // fs.unlink(req.file.path, (err) => {
+        //   if (err) {
+        //     console.error('Error deleting file:', err);
+        //   }
+        // });
         res.sendFile(html_path + 'error.html');
       }
     }
