@@ -1,4 +1,4 @@
-FROM httpd:latest
-WORKDIR /usr/local/apache2/htdocs/
-COPY ./src/* ./
+FROM node:latest
+WORKDIR /usr/local/src/
+COPY . .
 CMD [ "npm", "start" ]
