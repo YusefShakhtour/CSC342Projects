@@ -23,10 +23,8 @@ app.post('/send', upload.single('file'), (req,res) => {
         fs.unlink(req.file.path, (err) => {
           if (err) {
             console.error('Error deleting file:', err);
-            return res.status(500).send('Error deleting file');
           }
         });
-        console.log('File deleted successfully');
         res.sendFile(html_path + 'error.html');
       }
     }
