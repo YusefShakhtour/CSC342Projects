@@ -30,6 +30,10 @@ body {
     box-shadow: 10px 10px 10px rgb(70, 70, 70);
 }
 
+textarea {
+    background-color: rgb(236, 236, 236);
+}
+
 .detailContainer {
     padding: 20px;
     border: 1px solid black;
@@ -73,6 +77,10 @@ h1 {
 }
 
 input:invalid {
+    border-color: red;
+}
+
+textarea:invalid {
     border-color: red;
 }
 
