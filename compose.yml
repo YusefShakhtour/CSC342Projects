@@ -20,15 +20,9 @@ services:
       - ./Homework2:/usr/local/apache2/htdocs
 
   hw3:
-    image: httpd:latest
+    build:
+      context: ./Homework3
+      dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./Homework3:/usr/local/apache2/htdocs
-
-  # hw3:
-  #   build:
-  #     context: ./Homework3
-  #     dockerfile: Dockerfile
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./Homework3:/usr/local/app
+      - ./Homework3:/usr/local/app
