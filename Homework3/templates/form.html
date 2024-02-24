@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./js/form.js"></script>
-    <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="../static/css/form.css">
     <title>Document</title>
 </head>
 <body>
+    <div class="outContainer">
     <form action="send" method="post" id="form" enctype="multipart/form-data">
         <div class="sendContainer">
             <h1>Sender Details</h1>
@@ -16,7 +17,7 @@
                 <div></div>
                 <input type="file" name="file" accept="image/*" id="fileIn" required/>
             </div>
-            <div>First Name:</div>
+            <div id="firstname">First Name:</div>
             <input type="text" name="sendFirst" required/>
             <div>Last Name:</div>
             <input type="text" id="lastname" name="sendLast" required/>
@@ -60,12 +61,13 @@
             <input type="password" name="ccv" minlength="3" maxlength="4" required/>
 
             <div>Amount($):</div>
-            <input type="number" step=".01" name="amount" required/>
+            <input type="number" step=".01" name="amount" required/><br>
 
             <input type="checkbox" name="terms" id="check" required/>
-            <label>I agree to the terms and conditions</label>
+            <label>I agree to the terms and conditions</label><br>
             <input type="submit" id="submit"/>
         </div>
     </form>
+</div>
 </body>
 </html>
