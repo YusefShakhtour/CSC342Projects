@@ -1,6 +1,16 @@
 const express = require('express'); // Import our Express dependency
 const multer = require('multer');
-const upload = multer({dest: 'static/uploads/'});
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'static/uploads/')
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + "." + file.mimetype.split("/")[1]);
+  }
+});
+
+const upload = multer({storage: storage});
+
 const fs = require('fs');
 
 const app = express(); // Create a new server instance
@@ -21,11 +31,6 @@ app.post('/send', upload.single('file'), (req,res) => {
     if ((req.body.recFirst.toLowerCase() == "stuart") || (req.body.recFirst.toLowerCase() == "stu")) {
       if (req.body.recLast.toLowerCase() == "dent") {
         fs.unlink(req.file.path);
-        // fs.unlink(req.file.path, (err) => {
-        //   if (err) {
-        //     console.error('Error deleting file:', err);
-        //   }
-        // });
         res.sendFile(html_path + 'error.html');
       }
     }
@@ -43,17 +48,13 @@ app.post('/send', upload.single('file'), (req,res) => {
               res.sendFile(html_path + 'error.html');
             } 
           }
-          if ((RegExp) ("[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}").test(req.body.cardNum) == false) {
-            res.sendFile(html_path + 'error.html');
-          }
-
-          if ((RegExp) ("^(0[1-9]|1[0-2])\/([0-9]{4})$").test(req.body.expDate) == false) {
+          if ((RegExp) ("[0-9]{16}").test(req.body.cardNum) == false) {
             res.sendFile(html_path + 'error.html');
           }
           else {
             let date = req.body.expDate;
-            let split = date.split("/");
-            let exp = new Date(split[1], split[0]);
+            let split = date.split("-");
+            let exp = new Date(split[0], split[1]);
             let today = new Date();
             if (exp < today) {
               res.sendFile(html_path + 'success.html');

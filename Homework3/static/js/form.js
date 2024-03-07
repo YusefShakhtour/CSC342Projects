@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
     let form = document.getElementById("form");
 
-    let check = document.getElementById('check');
+    let ccv = document.getElementById("cc")
     let file = document.getElementById("fileIn");
     
 
@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', e => {
                 img.src = e.target.result;
             }
             reader.readAsDataURL(input.files[0]);
+        }
+    });
+
+    ccv.addEventListener('change', function() {
+        if (!isNaN(ccv.value - parseFloat(ccv.value))) {
+            ccv.setCustomValidity("");
+        }
+        else {
+            ccv.setCustomValidity("Please enter a valid, 3-4 digit numerical CCV");
         }
     });
 
@@ -50,8 +59,8 @@ document.addEventListener('DOMContentLoaded', e => {
 
     cardNum.addEventListener('change', function(e) {
         const input = e.target;
-        if (input.validity.patternMismatch) {
-            input.setCustomValidity("Enter your card in the ####-####-####-#### format");
+        if (String(input.value).length != 16) {
+            input.setCustomValidity("Please enter a 16 digit card number");
         }
         else {
             input.setCustomValidity("");
@@ -60,14 +69,11 @@ document.addEventListener('DOMContentLoaded', e => {
 
     expDate.addEventListener('change', function(e) {
         let date = expDate.value;
-        let split = date.split("/");
-        let exp = new Date(split[1], split[0]);
+        let split = date.split("-");
+        let exp = new Date(split[0], split[1]);
         let today = new Date();
         const input = e.target;
-        if (input.validity.patternMismatch) {
-            input.setCustomValidity("Please ensure your date is in the MM/YYYY format");
-        }
-        else if (exp < today) {
+        if (exp < today) {
             input.setCustomValidity("The card you entered is expired");
         }
         else {
