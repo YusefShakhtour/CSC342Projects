@@ -101,7 +101,7 @@ function createHowl(user) {
         // Eg (2020-03-13T17:19:13Z -> March 13th, 2020, 5:19PM)
         let howlDate = user.datetime;
         const link = document.createElement('a');
-        link.href = '/profile?id=' + user.userId;
+        link.href = './profile?id=' + user.userId;
         const card = document.createElement('div');
         card.classList.add('card-body', 'border', 'border-3', 'border-dark', 'mt-3');
     

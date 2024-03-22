@@ -151,7 +151,7 @@ function createFollow(current) {
                     let profilePic = user.avatar;
 
                     const link = document.createElement('a');
-                    link.href = '/profile?id=' + user.id;
+                    link.href = './profile?id=' + user.id;
 
                     // let item = document.createElement('div');
                     // item.classList.add("accordion-collapse", "collapse", "flush-collapseOne");
