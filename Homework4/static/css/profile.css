@@ -1,0 +1,40 @@
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.studentBtn {
+    grid-column: 5;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    margin-left: 3vh;
+    grid-column: 1;
+}
+
+input[type="checkbox"].checkboxBtn + label {
+    color: #ffffff;
+    background-color: black;
+    border-color: white;
+}
+
+.test {
+    background-color: green;
+}
+
+input[type="checkbox"].checkboxBtn:checked + label {
+    color: #252525;
+    background-color: white;
+    border-color: black;
+}
+
+div .image {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+}

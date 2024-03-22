@@ -1,0 +1,22 @@
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-brand {
+    margin-left: 3vh;
+    grid-column: 1;
+}
+
+.studentBtn {
+    grid-column: 5;
+}
+
+.howlText {
+    height: 9vh;
+}
