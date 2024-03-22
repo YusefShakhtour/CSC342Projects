@@ -72,7 +72,7 @@ router.post('/howls/:userId', SessionMiddleware, (req, res) => {
     let newHowl = {
         id : howls.length,
         userId : req.body.userId,
-        datetime : "2019-10-18T00:17:32Z",
+        datetime : new Date().toISOString(),
         text : req.body.text
     };
     howls.push(newHowl);
@@ -99,8 +99,6 @@ router.put('/unfollow/:userId', SessionMiddleware, (req, res) => {
 
 router.post('/login', (req, res) => {
     let flag = false;
-    // console.log(users[Object.keys(users)[0]].username);
-    // console.log(Object.keys(users).length);
     for (let i = 0; i < Object.keys(users).length; i++) {
         if (users[Object.keys(users)[i]].username == req.body.username) {
             initializeSession(req, res, Object.keys(users)[i]);

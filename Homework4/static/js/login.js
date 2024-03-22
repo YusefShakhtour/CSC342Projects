@@ -1,6 +1,11 @@
 import APIClient from "./APIClient.js";
 
 document.addEventListener('DOMContentLoaded', function() {
+    //User already logged in
+    if (localStorage.getItem('userId')) {
+        window.location.replace('./feed');
+    }
+
     let login = document.querySelector('.loginBtn');
     login.addEventListener('click', function() {
         let user = document.querySelector('.userInput')
@@ -14,7 +19,5 @@ document.addEventListener('DOMContentLoaded', function() {
             } 
             window.location.replace('./feed');           
         });
-
     });
-
 });

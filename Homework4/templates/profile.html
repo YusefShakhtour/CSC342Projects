@@ -11,24 +11,18 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="./feed">Howler</a>
-        <!-- <a class="profile nav-link" href="#">@Student</a>
-        <img class="image" src="#"> -->
+        <a class="navbar-brand col-1" href="./feed">Howler</a>
+        <div class="dropdown studentBtn">
+            <button class="btn btn-secondary dropdown-toggle btnText" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item profileBtn" href="#">Profile</a></li>
+              <li><a class="dropdown-item logoutBtn" href="#">Logout</a></li>
+            </ul>
+          </div>
       </nav>
         <div class="row mt-4 infoList">
-            <!-- <div class="col-1"></div>
-            <div class="d-flex align-items-center col-3">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3">
-            </div>
-            <div class="col-3">
-            <div>Gra Duate</div>
-            <div>@graduate</div>
-            </div>
-            <div class="col-1"></div>
-            <button type="button" class="btn btn-primary col-3 btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
-                Follow
-              </button> -->
               <input type="checkbox" class="btn-check col-3 order-last checkboxBtn" id="btn-check-2" checked autocomplete="off">
               <label class="btn btn-primary col-3 order-last btnLabel" for="btn-check-2">Follow</label>
         </div>
@@ -43,34 +37,13 @@
                         </button>
                         </h2>
                         <div class="flush-collapseOne accordion-collapse collapse">
-                        <!-- <div class="accordion-body d-flex">
-                            <img class="border border-2 border-dark rounded-circle img-fluid. max-width: 100% col-3" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp">
-                            <div class="col-1"></div>
-                            <div class="col-3">
-                                <div>Stu Dent</div>
-                                <div>@student</div>
-                            </div>
-                        </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            <h4 class="mt-4">Howls:</h4>
-            <div id="howlList">
-                <!-- <div class="card-body border border-3 border-dark mt-3">
-                    <div class="justify-content-center cardHeader row mt-3">
-                        <img class="border border-2 border-dark rounded-circle img-fluid. max-width: 100% col-3" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Card image cap">
-                        <div class="col-3">
-                            <h6 class="card-title">Card title</h6>
-                            <h7 class="userName">@username</h7>
-                        </div>
-                        <h7 class="date col-5">Oct 1st, 10:30pm</h7>
-                    </div>
-                    <div class="justify-content-center row cardText">
-                        <p class="col-11 mt-3">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div> -->
+            <h4 class="howlLabel mt-4">Howls:</h4>
+            <div id="howlList" class="howlList container">
             </div>
 </body>
 </html>

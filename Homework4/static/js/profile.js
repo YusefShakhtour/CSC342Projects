@@ -4,25 +4,23 @@ const query = window.location.search;
 let parameters = new URLSearchParams(query);
 let id = parameters.get('id');
 
-
-
 //Creating header and user info
 APIClient.getUserById(localStorage.getItem("userId")).then(user => {
     let nav = document.querySelector(".navbar");
-    let profButton = document.createElement('a');
-    profButton.classList.add('profile', 'nav-link', 'studentBtn')
-    profButton.href = "#";
-    profButton.innerHTML = "@" + user.username;
-    nav.appendChild(profButton);
+    let btnText = document.querySelector('.btnText');
+    btnText.innerHTML = "@" + user.username;
 
     let profImg = document.createElement('img');
     profImg.classList.add('image', 'rounded-circle');
     profImg.src = user.avatar;
     nav.appendChild(profImg);
 
-    //Logout by clicking student (//TODO currently temporary just to have a way to logout)
-    let logOut = document.querySelector(".studentBtn")
-    logOut.addEventListener('click', function() {
+    let profileBtn = document.querySelector('.profileBtn');
+    let logoutBtn = document.querySelector('.logoutBtn');
+    profileBtn.href = "./profile?id=" + user.id;
+
+    //Logout
+    logoutBtn.addEventListener('click', function() {
         APIClient.logout();
         localStorage.removeItem("userId");
         window.location.replace("./login");
@@ -42,7 +40,7 @@ APIClient.getUserById(id).then(user => {
     inCont.appendChild(profPic);
 
     const infoCont = document.createElement('div');
-    infoCont.classList.add('col-4');
+    infoCont.classList.add('col-4', 'infoCont');
     const profName = document.createElement('div');
     profName.innerHTML = user.first_name + " " + user.last_name;
     const profUser = document.createElement('div');
@@ -55,24 +53,9 @@ APIClient.getUserById(id).then(user => {
     container.appendChild(spacer);
     container.appendChild(inCont);
     container.appendChild(infoCont);
-    // container.appendChild(spacer2);
-
-    //Change this depending on if user is following or not
-    // const btn = document.createElement('button');
-    // btn.classList.add('btn', 'btn-primary', 'col-3', "btn", "btn-dark");
-    // btn.innerHTML = "Follow";
-    // if (id == localStorage.getItem("userId")) {
-    //     btn.classList.add("disabled");
-    // }
-
-    // container.appendChild(btn);
-
 });
 
 
-
-
-// let userId = localStorage.getItem("userId");
 createFollow(id);
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -89,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < userHowls.length; i++) {
             arr.push(userHowls[i]);
         }
+        arr.sort((a,b) => new Date(b.datetime) - new Date(a.datetime));
         for (let i = 0; i < arr.length; i++) {
             createHowl(arr[i]);
         }
@@ -141,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function createFollow(current) {
     APIClient.getUserById(current).then(user => {
         APIClient.getFollows(user.id).then(followData => {
-            // let parent = document.querySelector('.accordion-item');
             for (let i = 0; i < followData.length; i++) {
                 APIClient.getUserById(followData[i]).then(user => {
                     let item = document.querySelector(".flush-collapseOne");
@@ -153,13 +136,10 @@ function createFollow(current) {
                     const link = document.createElement('a');
                     link.href = './profile?id=' + user.id;
 
-                    // let item = document.createElement('div');
-                    // item.classList.add("accordion-collapse", "collapse", "flush-collapseOne");
-                    // let item = document.querySelector("flush-collapseOne");
                     let body = document.createElement('div');
                     body.classList.add("accordion-body", "d-flex");
                     let img = document.createElement('img');
-                    img.classList.add("border", "border-2", "border-dark", "rounded-circle", "img-fluid.", "max-width:100%", "col-3");
+                    img.classList.add("accImg", "border", "border-2", "border-dark", "rounded-circle", "img-fluid.", "max-width:100%", "col-3");
                     img.src = profilePic;
                     let space = document.createElement('div');
                     space.classList.add("col-1");
@@ -192,19 +172,17 @@ function createHowl(user) {
         let profilePic = current.avatar;
         let howlText = user.text;
 
-        //Need to figure out how to convert this to a proper date syntax
-        // Eg (2020-03-13T17:19:13Z -> March 13th, 2020, 5:19PM)
-        let howlDate = user.datetime;
+        let howlDate = formatDate(user.datetime);
         const link = document.createElement('a');
-        link.href = '/profile?id=' + user.userId;
+        link.href = './profile?id=' + user.userId;
         const card = document.createElement('div');
         card.classList.add('card-body', 'border', 'border-3', 'border-dark', 'mt-3');
     
     
         const header = document.createElement('div');
-        header.classList.add('justify-content-center');
         header.classList.add('cardHeader');
         header.classList.add('row');
+        header.classList.add('ml-3');
         header.classList.add('mt-3');
     
         const userInfo = document.createElement('div');
@@ -219,7 +197,7 @@ function createHowl(user) {
         userInfo.appendChild(userName);
     
         const img = document.createElement('img');
-        img.classList.add('rounded-circle', 'img-fluid.', 'max-width:100%', 'col-3', 'border', 'border-2', 'border-dark');
+        img.classList.add('border', 'border-2', 'border-dark', 'rounded-circle', 'img-fluid.', 'max-width:100%', 'col-3');
         img.src = profilePic;
     
         const date = document.createElement('h7');
@@ -248,4 +226,24 @@ function createHowl(user) {
         link.appendChild(card);
         howls.append(link);
     });
+}
+
+//Create date on howl
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    
+    const months = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    const formattedDate = `${month} ${day}, ${year}`;
+
+    return formattedDate;
 }

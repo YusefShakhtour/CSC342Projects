@@ -12,28 +12,23 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="./feed">Howler</a>
-        <!-- <a class="profile nav-link studentBtn" href="#">@Student</a> -->
-        <!-- <img class="image rounded-circle" src="https://robohash.org/eosinciduntquam.png?size=64x64&set=set1"> -->
+        <div class="dropdown studentBtn">
+            <button class="btn btn-secondary dropdown-toggle btnText" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item profileBtn" href="#">Profile</a></li>
+              <li><a class="dropdown-item logoutBtn" href="#">Logout</a></li>
+            </ul>
+          </div>
       </nav>
-    <div class="row justify-content-center">
-          <textarea class="howlText col-8 mt-4" type="text"></textarea>
-          <button class="howl btn btn-outline-dark col-5 mt-3">Howl</button>
+    <div class="row justify-content-center mx-0 px-0">
+          <textarea class="howlText mx-0 px-2 col-8 mt-4" type="text"></textarea>
+          <button class="howl btn mx-0 px-0 howlBtn btn-outline-dark col-5 mt-3">Howl</button>
   </div>
 
-  <div id="howlList">
-    <!-- <div class="card-body border border-3 border-dark mt-3">
-        <div class="justify-content-center cardHeader row mt-3">
-            <img class="border border-2 border-dark rounded-circle img-fluid. max-width:100% col-3" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" alt="Card image cap">
-            <div class="col-3">
-                <h6 class="card-title">Card title</h6>
-                <h7 class="userName">@username</h7>
-            </div>
-            <h7 class="date col-5">Oct 1st, 10:30pm</h7>
-        </div>
-        <div class="justify-content-center row cardText">
-            <p class="col-11 mt-3">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-    </div> -->
+  <div id="howlList" class="howlList container">
+
 </div>
 
     

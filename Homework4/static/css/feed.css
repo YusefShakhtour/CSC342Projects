@@ -1,6 +1,47 @@
-.navbar {
+/* .navbar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+} */
+
+.studentBtn {
+    margin-left: auto;
+}
+
+.btnText {
+    background-color: #FBFBFB;
+    color: black;
+    border: none;
+}
+
+a:hover {
+    color: black;
+}
+
+.btnLabel {
+    height: 40px;
+}
+
+.cardHeader img {
+    width: auto;    
+    max-height:100%;
+    padding: 0;
+    margin-left: 2vh;
+}
+
+.cardHeader {
+    display: flex;
+}
+
+.date {
+    text-align: right;
+    /* width: 65%; */
+    margin-left: auto;
+    padding-right: 20px;
+}
+
+.howlList {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a {
@@ -18,5 +59,9 @@ a {
 }
 
 .howlText {
-    height: 9vh;
+    height: 25vw;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+

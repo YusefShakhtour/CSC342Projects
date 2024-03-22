@@ -37,7 +37,7 @@ exports.initializeSession = (req, res, user) => {
   res.cookie(SESSION_COOKIE_NAME, sessionId, {
     httpOnly: true,
     secure: true,
-    maxAge: 5 * 60 * 1000 //This session expires in 2 minutes
+    maxAge: 43200 * 60 * 1000 //This session expires in 30 days
   });
 
   sessions[sessionId] = sessionData; //Associate ID with data

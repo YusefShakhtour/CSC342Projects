@@ -1,10 +1,24 @@
-.navbar {
+/* .navbar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
+} */
 
 .studentBtn {
-    grid-column: 5;
+    margin-left: auto;
+}
+
+.btnText {
+    background-color: #FBFBFB;
+    color: black;
+    border: none;
+}
+
+.btnLabel {
+    height: 40px;
+}
+
+a:hover {
+    color: black;
 }
 
 a {
@@ -33,8 +47,35 @@ input[type="checkbox"].checkboxBtn:checked + label {
     border-color: black;
 }
 
-div .image {
-    width: 20vh;
-    height: 20vh;
-    border-radius: 50%;
+.accImg {
+    width: auto;    
+    max-height:100%;
+}
+
+.cardHeader img {
+    width: auto;    
+    max-height:100%;
+    padding: 0;
+    margin-left: 2vh;
+}
+
+.cardHeader {
+    display: flex;
+    
+}
+
+.date {
+    text-align: right;
+    /* width: 65%; */
+    margin-left: auto;
+    padding-right: 20px;
+}
+
+.howlList {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.howlLabel {
+    margin-left: 8vh;
 }
