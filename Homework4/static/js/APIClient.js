@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = './api';
 
 function checkResponse(res) {
     if(!res.ok) {
@@ -11,7 +11,6 @@ function checkResponse(res) {
     console.log("ERROR", error);
     throw error;
   }
-  
   const getUsers = () => {
     return fetch(API_BASE+'/users')
       .then(checkResponse)
