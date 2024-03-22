@@ -28,7 +28,19 @@ document.addEventListener('DOMContentLoaded', e => {
         }
     });
 
-    ccv.addEventListener('change', function() {
+    function isDigit(char) {
+        const digit = +char;
+        return !isNaN(digit) && !isNaN(parseInt(char));
+    }
+
+    ccv.addEventListener('keyup', function(e) {
+
+        let newChar = ccv.value.charAt(ccv.value.length - 1);
+
+        if (!isDigit(newChar)) {
+            ccv.value = ccv.value.slice(0, -1);
+        }
+
         if (!isNaN(ccv.value - parseFloat(ccv.value))) {
             ccv.setCustomValidity("");
         }
