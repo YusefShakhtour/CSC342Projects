@@ -39,3 +39,13 @@ services:
       - ./Homework4/templates:/app/templates
       - ./Homework4/src:/app/src
       - ./Homework4/server.js:/app/server.js
+  hw5:
+    build:
+      context: ./Homework5
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./Homework5/static:/app/static
+      - ./Homework5/templates:/app/templates
+      - ./Homework5/src:/app/src
+      - ./Homework5/server.js:/app/server.js
