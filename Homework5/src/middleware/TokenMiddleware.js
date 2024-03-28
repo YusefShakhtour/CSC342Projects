@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const TOKEN_COOKIE_NAME = "cookieToken";
 // In a real application, you will never hard-code this secret and you will
