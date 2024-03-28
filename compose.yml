@@ -49,3 +49,5 @@ services:
       - ./Homework5/templates:/app/templates
       - ./Homework5/src:/app/src
       - ./Homework5/server.js:/app/server.js
+    env_file:
+      - .env
