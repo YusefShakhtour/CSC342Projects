@@ -55,7 +55,7 @@ exports.TokenMiddleware = (req, res, next) => {
 
     const expectedSignature = crypto.createHmac('sha256', API_SECRET)
       .update(tokenBody)
-      .digest('base64');
+      .digest('base64url');
 
     if (signature !== expectedSignature) {
       res.status(401).json({error: 'Not authenticated'});
@@ -100,7 +100,7 @@ exports.generateToken = (req, res, user) => {
   const crypto = require('crypto');
   let signature = crypto.createHmac('sha256', API_SECRET)
     .update(encodedToken)
-    .digest('base64');
+    .digest('base64url');
 
   let token = encodedToken + '.' + signature;
 
