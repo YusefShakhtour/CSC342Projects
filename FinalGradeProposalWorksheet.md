@@ -4,12 +4,12 @@
 ## Contents
 
 * [Individual Assignments](#individual-assignments)
-  * [Homework 1](#-homework-1)
-  * [Homework 2](#-homework-2)
-  * [Homework 3](#-homework-3)
-  * [Homework 4](#-homework-4)
-  * [Homework 5](#-homework-5)
-* [Team Project](#-team-project)
+  * [Homework 1](#homework-1)
+  * [Homework 2](#homework-2)
+  * [Homework 3](#homework-3)
+  * [Homework 4](#homework-4)
+  * [Homework 5](#homework-5)
+* [Team Project](#team-project)
   * [Individual Contributions](#individual-contributions)
   * [Peer Evaluations](#peer-evaluations)
 
