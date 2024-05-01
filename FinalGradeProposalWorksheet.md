@@ -35,7 +35,7 @@
 | Submission | Date Submitted | Self-Rating | Summary of Feedback Received | Changes Made Based on Feedback |
 |------------|----------------|-------------|------------------------------|---------------------------------|
 | Original   | 2024-02-23     | Meets Expectations | Multer configuration not working properly, formatting issues with card number, date, and expiration | Fixed multer configuration and formatting issues as well as enhanced the UI |
-| Rework 1   | 2024-04-04     | Exceeds Expectations | Your implementation now works properly | None |
+| Rework 1   | 2024-03-24     | Exceeds Expectations | Your implementation now works properly | None |
 
 
 
